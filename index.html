@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title> Comp 20 HW: API tests </title>
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    </head>
+    <body>
+        <h1> API for International Space Station </h1>
+        <div id='data'> </div>
+
+        <script type="text/javascript">
+            function getData() {
+                var $data = $('#data');
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://api.wheretheiss.at/v1/satellites/25544',
+                    success: function(data) {
+                        $data.append('name: ' + data.name);
+                        $data.append('<br>id: ' + data.id);
+                        $data.append('<br>altitude: ' + data.altitude);
+                        $data.append('<br>daynum: ' + data.daynum);
+                        $data.append('<br>latitude: ' + data.latitude);
+                        $data.append('<br>longitude: ' + data.longitude);
+                        $data.append('<br>solar_lat: ' + data.solar_lat);
+                        $data.append('<br>solar_lon: ' + data.solar_lon);
+                        $data.append('<br>timestamp: ' + data.timestamp);
+                        $data.append('<br>units: ' + data.units);
+                        $data.append('<br>velocity: ' + data.velocity);
+                        $data.append('<br>visibility: ' + data.visibility + '<br>');
+                    }
+                });
+            }
+            $(document).ready(getData());
+        </script>
+
+        <div style="margin: 15px">
+             <p1 id='q1'> This API gets telemetry for the International Space Station. It has data points for the positon, velocity, and conditions on the ISS. </p1>
+        </div>
+        <div style="margin: 15px">
+             <a id='q2' href='https://wheretheiss.at'> Link to API Documentation: https://wheretheiss.at </a>
+        </div>
+        <div style="margin: 15px">
+             <p1 id='q3'> The options I used for this API request is using the GET method inside AJAX to get the JSON object at the URL. Then after getting the JSON object it returns it and parses the JSON object, formatting all data points on the page. </p1>
+        </div>
+        <div style="margin: 15px">
+             <p1 id='q4'> This API could be helpful if someone wanted to make a website that montiored satellite positions and track there telemetry. One other potential use for an API like this would be as a means of creating a data source for all public or private satellite positions to prevent collisions. For example, if SpaceX put a satellite in orbit it can share the satellites telemetry with the API so when NASA wants to put another satellite into orbit, it can easily check with the API's live data points to make sure a collision or interference error does not occur. </p1>
+        </div>
+    </body>
+</html>
